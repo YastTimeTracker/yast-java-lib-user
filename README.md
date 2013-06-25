@@ -1,7 +1,9 @@
-yast-java-lib-user
-==================
+Yast Java User API Library
+=================
 
 Java library for accessing Yast's user API http://www.yast.com/wiki/index.php/API
+
+Example project: https://github.com/YastTimeTracker/yast-java-lib-user-example
 
 
 Add this to your pom.xml
