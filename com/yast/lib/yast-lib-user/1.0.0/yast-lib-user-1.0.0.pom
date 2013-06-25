@@ -1,0 +1,91 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.yast.lib</groupId>
+  <artifactId>yast-lib-user</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+
+  <name>Yast User API</name>
+  <url>http://www.yast.com</url>
+
+  <dependencies>
+	<dependency>
+		<groupId>org.apache.httpcomponents</groupId>
+		<artifactId>httpclient</artifactId>
+		<version>4.3-beta2</version>
+	</dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <properties>
+    <!-- github server corresponds to entry in ~/.m2/settings.xml -->
+    <github.global.server>github</github.global.server>
+  </properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
+				</configuration>
+			</plugin>
+	        <plugin>
+	            <groupId>com.github.github</groupId>
+	            <artifactId>site-maven-plugin</artifactId>
+	            <version>0.8</version>
+	            <configuration>
+	                <message>Maven artifacts for ${project.version}</message>  <!-- git commit message -->
+	                <noJekyll>true</noJekyll>                                  <!-- disable webpage processing -->
+	                <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory> <!-- matches distribution management repository url above -->
+	                <branch>refs/heads/mvn-repo</branch>                       <!-- remote branch name -->
+	                <includes><include>**/*</include></includes>
+	                <repositoryName>yast-java-lib-user</repositoryName>      <!-- github repo name -->
+	                <repositoryOwner>YastTimeTracker</repositoryOwner>    <!-- github username  -->
+	                <dryRun>
+	                	false
+	                </dryRun>	
+	            </configuration>
+	            <executions>
+	              <!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
+	              <execution>
+	                <goals>
+	                  <goal>site</goal>
+	                </goals>
+	                <phase>deploy</phase>
+	              </execution>
+	            </executions>
+	        </plugin>
+	    </plugins>
+	</build>
+
+	<distributionManagement>
+	    <repository>
+	        <id>github</id>
+	        <name>GitHub ${project.artifactId} Repository</name>
+	        <url>https://raw.github.com/YastTimeTracker/yast-java-lib-user/mvn-repo</url>
+	    </repository>
+	</distributionManagement>
+
+	<repositories>
+	    <repository>
+	        <id>yast-lib-user-mvn-repo</id>
+	        <url>https://raw.github.com/YastTimeTracker/yast-java-lib-user/mvn-repo/</url>
+	        <snapshots>
+	            <enabled>true</enabled>
+	            <updatePolicy>always</updatePolicy>
+	        </snapshots>
+	    </repository>
+	</repositories>
+
+
+
+</project>
