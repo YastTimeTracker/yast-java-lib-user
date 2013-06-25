@@ -41,7 +41,7 @@
 	        <plugin>
 	            <groupId>com.github.github</groupId>
 	            <artifactId>site-maven-plugin</artifactId>
-	            <version>0.7</version>
+	            <version>0.8</version>
 	            <configuration>
 	                <message>Maven artifacts for ${project.version}</message>  <!-- git commit message -->
 	                <noJekyll>true</noJekyll>                                  <!-- disable webpage processing -->
@@ -50,6 +50,9 @@
 	                <includes><include>**/*</include></includes>
 	                <repositoryName>yast-java-lib-user</repositoryName>      <!-- github repo name -->
 	                <repositoryOwner>YastTimeTracker</repositoryOwner>    <!-- github username  -->
+	                <dryRun>
+	                	false
+	                </dryRun>	
 	            </configuration>
 	            <executions>
 	              <!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
