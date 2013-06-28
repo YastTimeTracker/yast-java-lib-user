@@ -31,5 +31,6 @@ Add this to your pom.xml
 
 
 Direct link to the latest jar: https://github.com/YastTimeTracker/yast-java-lib-user/blob/mvn-repo/com/yast/lib/yast-lib-user/1.0.0/yast-lib-user-1.0.0.jar
-There's only one dependency: org.apache.httpcomponents.httpclient (download: 
-http://repo1.maven.org/maven2/org/apache/httpcomponents/httpclient/4.3-beta2/httpclient-4.3-beta2.jar )
+
+There's only one dependency: org.apache.httpcomponents.httpclient 
+http://repo1.maven.org/maven2/org/apache/httpcomponents/httpclient/4.3-beta2/httpclient-4.3-beta2.jar
